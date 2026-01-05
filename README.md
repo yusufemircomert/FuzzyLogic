@@ -16,6 +16,12 @@ The study utilizes the `academicPerformanceData.xlsx` dataset. The comparative r
 
 ---
 
+<div align="center">
+  <img width="1006" height="921" alt="_- visual selection (2)" src="https://github.com/user-attachments/assets/306c22b4-adb5-4cc0-b45d-5d46d726ca92" />
+</div>
+
+
+---
 This directory contains the source code, datasets, and analysis notebooks required to reproduce the study.
 
 ```text
