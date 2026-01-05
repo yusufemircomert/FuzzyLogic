@@ -71,37 +71,42 @@ pip install -r requirements.txt
 
 ## ▶️ Execution Guide (Step-by-Step)
 
-For the correct reproduction of the report results, please execute the files in the following order:
+To ensure all datasets are available for the notebooks, please execute the files in the following strict order:
 
-### 1️⃣ Exploratory Data Analysis
-* **File:** `data_analysis.ipynb`
-* **Description:** Visualizes the dataset using Correlation Matrices, Box Plots, and t-SNE. It establishes the "non-linear separability" argument used in the report.
+### 1️⃣ Data Preparation (Run Scripts First)
+Before running any analysis, generate the necessary training and testing subsets by executing the Python scripts.
 
-### 2️⃣ Method A: Rule-Based FIS
-* **Pre-requisite:** Run `python fis_data_creator.py` to generate test subsets.
-* **File:** `Method_A_FIS.ipynb`
-* **Description:** Implements a Mamdani-type system with manual rules (e.g., *If Exam is High, then Grade is 5*).
-* **Goal:** To demonstrate the limitations of static expert systems.
+* **Generate FIS Subsets:**
+    ```bash
+    python fis_data_creator.py
+    ```
+    * *Action:* Splits `academicPerformanceData.xlsx` into balanced subsets (`fis_subset_*.csv`) for Method A.
 
-### 3️⃣ Dataset Expansion (Upsampling for ANFIS) 
-* **File:** `anfis_data_creator.py`
-* **Description:** The ANFIS neural network architecture requires a large number of iterations to converge properly. Since the original dataset is small, this script expands the dataset to 50,000 samples using **stratified sampling with replacement (bootstrapping)**. This ensures the model learns the underlying probability distribution without overfitting to a small sample size.
-* **Command:**
+* **Generate ANFIS Datasets (Upsampling):**
     ```bash
     python anfis_data_creator.py
     ```
-* *Note: This will create `anfis_train_*.csv` files required for the next step.*
+    * *Action:* Expands the dataset to 50,000 samples using stratified sampling (`anfis_train_*.csv`) to ensure convergence for the Neural Network in Method B.
 
+---
 
-### 4️⃣ Method B: ANFIS Training
+### 2️⃣ Exploratory Data Analysis
+* **File:** `data_analysis.ipynb`
+* **Description:** Visualizes the raw dataset using Correlation Matrices, Box Plots, and t-SNE. It establishes the "non-linear separability" argument used in the report.
+
+### 3️⃣ Method A: Rule-Based FIS
+* **File:** `Method_A_FIS.ipynb`
+* **Description:** Implements a Mamdani-type expert system. Uses the `fis_subset` data generated in Step 1.
+* **Output:** ~58% Accuracy and Confusion Matrix.
+
+### 4️⃣ Method B: ANFIS Training (Neuro-Fuzzy)
 * **File:** `Method_B_ANFIS.ipynb`
-* **Description:** Loads the synthetic data and trains the custom 5-layer ANFIS architecture.
+* **Description:** Loads the synthetic data created in Step 1 and trains the custom 5-layer ANFIS architecture.
 * **Output:** Generates Loss Curves, Learned Membership Function plots, and the final Confusion Matrix.
 
 ### 5️⃣ Benchmarking (ML Comparison)
 * **File:** `comparison_with_ml.ipynb`
-* **Description:** Trains Decision Tree and Random Forest classifiers on the same dataset to provide a baseline comparison against the Fuzzy Logic approaches.
-
+* **Description:** Trains Decision Tree and Random Forest classifiers to provide a baseline comparison against the Fuzzy Logic approaches.
 ---
 
 ## 🧠 Technical Architecture
