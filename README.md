@@ -83,7 +83,7 @@ For the correct reproduction of the report results, please execute the files in 
 * **Description:** Implements a Mamdani-type system with manual rules (e.g., *If Exam is High, then Grade is 5*).
 * **Goal:** To demonstrate the limitations of static expert systems.
 
-### 3️⃣ Dataset Expansion (Upsampling for ANFIS) ⚠️
+### 3️⃣ Dataset Expansion (Upsampling for ANFIS) 
 * **File:** `anfis_data_creator.py`
 * **Description:** The ANFIS neural network architecture requires a large number of iterations to converge properly. Since the original dataset is small, this script expands the dataset to 50,000 samples using **stratified sampling with replacement (bootstrapping)**. This ensures the model learns the underlying probability distribution without overfitting to a small sample size.
 * **Command:**
