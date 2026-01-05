@@ -22,5 +22,5 @@ Follow these steps to set up the project in your local environment.
 
 ### 1. Clone the Repository
 ```bash
-git clone [https://github.com/yusufemircomert/FuzzyLogic.git](https://github.com/yusufemircomert/FuzzyLogic.git)
+git clone [[https://github.com/yusufemircomert/FuzzyLogic.git](https://github.com/yusufemircomert/FuzzyLogic.git)](https://github.com/yusufemircomert/FuzzyLogic.git)
 cd FuzzyLogic
